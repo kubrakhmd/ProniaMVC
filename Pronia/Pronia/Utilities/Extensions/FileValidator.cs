@@ -1,4 +1,5 @@
-﻿using Pronia.Utilities.Enums;
+﻿using System.IO;
+using Pronia.Utilities.Enums;
 
 namespace Pronia.Utilities.Extensions
 {
@@ -45,7 +46,7 @@ namespace Pronia.Utilities.Extensions
 
         public static async Task<string> CreateFileAsync(this IFormFile file, params string[] roots)
         {
-            string fileName = String.Concat(Guid.NewGuid().ToString(), file.FileName);
+            string fileName = String.Concat(Guid.NewGuid().ToString(), file.FileName.Split('.').Length - 1);
 
             string path = CombinePaths(roots);
             path = Path.Combine(path, fileName);
