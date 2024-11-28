@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pronia.DAL;
-using Pronia.Models;
+using Pronia.Models; 
 
 namespace Pronia.Areas.Admin.Controllers
 {
@@ -100,18 +100,19 @@ namespace Pronia.Areas.Admin.Controllers
             if (category is null) return NotFound();
 
 
-           // category.IsDeleted = true;
-            if (category.IsDeleted)
-            {
-                category.IsDeleted = false;
-            }
-            else
-            {
-                category.IsDeleted = true;
-            }
+            category.IsDeleted = true;
+            //if (category.IsDeleted)
+            //{
+            //    category.IsDeleted = false;
+            //}
+            //else
+            //{
+            //    category.IsDeleted = true;
+            //}
 
 
             await _context.SaveChangesAsync();
+            
 
             return RedirectToAction(nameof(Index));
         }
