@@ -1,4 +1,4 @@
-﻿namespace Pronia.Areas.ViewModels.Product
+﻿namespace Pronia.Areas.ViewModels
 {
     public class GetProductAdminVM
     {

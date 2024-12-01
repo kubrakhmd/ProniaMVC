@@ -1,5 +1,6 @@
-﻿
-@model List<Category>
+﻿@using Pronia.Areas.ViewModel
+
+@model List<GetCategoryVM>
 @{
     int count = 0;
 }
@@ -29,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (Category category in Model)
+                            @foreach (GetCategoryVM categoryVM in Model)
                             {
                                 count++; ;
 
@@ -38,14 +39,14 @@
                                       @count
                                     </td>
                                     <td>
-                                        <p>@category.Name</p>
+                                        <p>@categoryVM.Name</p>
                                     </td>
                                     <td>
-                                      <p>@category.Products.Count</p>
+                                      <p>@categoryVM.ProductCount</p>
                                     </td>
                                     <td>
-                                        <a asp-action="Update" asp-route-id="@category.Id" class="btn btn-warning btn-info"><i class="mdi mdi-pencil"></i></a>
-                                        <a asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger btn-info"><i class="mdi mdi-delete"></i></a>
+                                        <a asp-action="Update" asp-route-id="@categoryVM.Id" class="btn btn-warning btn-info"><i class="mdi mdi-pencil"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@categoryVM.Id" class="btn btn-danger btn-info"><i class="mdi mdi-delete"></i></a>
                                         <a class="btn btn-primary"><i class="mdi mdi-email-open"></i></a>
                                     </td>
                                    

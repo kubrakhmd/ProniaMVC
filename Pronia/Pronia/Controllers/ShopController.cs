@@ -25,6 +25,10 @@ namespace Pronia.Controllers
                 .Include(p => p.ProductImages)
                 .Include(p=>p.ProductTags) 
                 .ThenInclude(pt=>pt.Tag)
+                .Include(p=>p.ProductColors)
+                .ThenInclude(pc=>pc.Color)
+                .Include(p=>p.ProductSizes)
+                .ThenInclude(ps=>ps.Size)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product is null) return NotFound();
