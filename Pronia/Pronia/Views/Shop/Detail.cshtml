@@ -189,11 +189,12 @@
                         </div>
                             <div class="product-category product-tags">
                                 <span class="title">Tags :</span>
-                                <ul>
-                                    <li>
-                                        <a href="#">Furniture</a>
-                                    </li>
-                                </ul>
+							<ul>
+                                @foreach (ProductTag pTag in Model.Product.ProductTags)
+                                {
+                                    <a href="#">@pTag.Tag.Name</a>
+                                }
+                            </ul>
                             </div>
                             <div class="product-category social-link align-items-center pb-0">
                             <span class="title pe-3">Share:</span>

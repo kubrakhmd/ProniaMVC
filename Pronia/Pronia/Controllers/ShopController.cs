@@ -21,7 +21,11 @@ namespace Pronia.Controllers
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null || id <= 0) return BadRequest();
-            Product product = await _context.Products.Include(p => p.Category).Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == id);
+            Product product = await _context.Products.Include(p => p.Category)
+                .Include(p => p.ProductImages)
+                .Include(p=>p.ProductTags) 
+                .ThenInclude(pt=>pt.Tag)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product is null) return NotFound();
             DetailVM detailVM = new DetailVM
