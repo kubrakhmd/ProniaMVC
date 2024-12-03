@@ -1,0 +1,12 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Pronia.Areas.Admin.Controllers
+{
+    public class SizeController1cs : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+}

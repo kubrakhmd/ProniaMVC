@@ -6,20 +6,22 @@ using Pronia.Models;
 
 namespace Pronia.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
-    public class ColorController : Controller
+    public class SizeController : Controller
     {
         private readonly ProniaDBContext _context;
 
-        public ColorController(ProniaDBContext context)
+        public SizeController(ProniaDBContext context)
         {
-            _context = context;
+            _context=context;   
+            
         }
         public async Task<IActionResult> Index()
         {
-            List<Color> colors = await _context.Colors.Where(c => !c.IsDeleted).ToListAsync();
+            List<Size> sizes = await _context.Sizes.Where(s => !s.IsDeleted).ToListAsync();
 
-            return View(colors);
+            return View(sizes);
 
         }
         public IActionResult Create()
@@ -27,15 +29,14 @@ namespace Pronia.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateColorVM colorVM)
+        public async Task<IActionResult> CreateAsync(CreateSizeVM sizeVM)
         {
             if (!ModelState.IsValid)
             {
-
                 return View();
             }
 
-            bool result = await _context.Colors.AnyAsync(t => t.Name.Trim() == colorVM.Name.Trim());
+            bool result = await _context.Tags.AnyAsync(t => t.Name.Trim() == sizeVM.Name.Trim());
 
             if (result)
             {
@@ -43,12 +44,12 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
 
             }
-           Color color = new()
+         Size size = new()
             {
-                Name = colorVM.Name,
+                Name = sizeVM.Name,
             };
-            color.CreatedAt = DateTime.Now;
-            await _context.Colors.AddAsync(color);
+            size.CreatedAt = DateTime.Now;
+            await _context.Sizes.AddAsync(size);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -61,31 +62,30 @@ namespace Pronia.Areas.Admin.Controllers
         {
             if (id == null || id < 1) return BadRequest();
 
-           Color color = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
+            Size size = await _context.Sizes.FirstOrDefaultAsync(s => s.Id == id);
 
-            if (color is null) return NotFound();
+            if (size is null) return NotFound();
 
-            return View(color);
+            return View(size);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int? id, UpdateColorVM colorVM)
+        public async Task<IActionResult> Update(int? id, UpdateSizeVM sizeVM)
         {
             if (id == null || id < 1) return BadRequest();
 
-            Color existed = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
-
+            Size existed = await _context.Sizes.FirstOrDefaultAsync(s=> s.Id == id);
             if (existed is null) return NotFound();
 
-            bool result = await _context.Colors.AnyAsync(c => c.Name == colorVM.Name && c.Id != id);
+            bool result = await _context.Sizes.AnyAsync(s => s.Name == sizeVM.Name && s.Id != id);
 
             if (result)
             {
-                ModelState.AddModelError(nameof(Color.Name), "Color already exists");
+                ModelState.AddModelError(nameof(Size.Name), "Size already exists");
                 return View();
             }
 
-            existed.Name = colorVM.Name;
+            existed.Name = sizeVM.Name;
 
             await _context.SaveChangesAsync();
 
@@ -99,19 +99,16 @@ namespace Pronia.Areas.Admin.Controllers
 
             if (id == null || id < 1) return BadRequest();
 
-           Color color = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
+            Size size = await _context.Sizes.FirstOrDefaultAsync(s => s.Id == id);
+            if (size is null) return NotFound();
 
-            if (color is null) return NotFound();
 
-
-            color.IsDeleted = true;
+           size.IsDeleted = true;
 
             await _context.SaveChangesAsync();
 
 
             return RedirectToAction(nameof(Index));
-        }
-
-
+        } 
     }
 }

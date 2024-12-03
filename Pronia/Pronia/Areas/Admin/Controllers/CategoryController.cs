@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Pronia.Areas.ViewModels;
 using Pronia.DAL;
 using Pronia.Models; 
 
@@ -27,7 +28,7 @@ namespace Pronia.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(Category category)
+        public async Task<IActionResult> CreateAsync(CreateCategoryVM categoryVM)
         {
             if (!ModelState.IsValid)
             {
@@ -35,7 +36,7 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
             }
 
-            bool result = await _context.Categories.AnyAsync(c => c.Name.Trim() == category.Name.Trim());
+            bool result = await _context.Categories.AnyAsync(c => c.Name.Trim() == categoryVM.Name.Trim());
 
             if (result)
             {
@@ -43,7 +44,10 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
 
             }
-
+            Category category = new()
+            {
+                Name = categoryVM.Name
+            };
             category.CreatedAt = DateTime.Now;
             await _context.Categories.AddAsync(category);
             await _context.SaveChangesAsync();
@@ -65,7 +69,7 @@ namespace Pronia.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int? id, Category category)
+        public async Task<IActionResult> Update(int? id, UpdateCategoryVM categoryVM)
         {
             if (id == null || id < 1) return BadRequest();
 
@@ -73,7 +77,7 @@ namespace Pronia.Areas.Admin.Controllers
 
             if (existed is null) return NotFound();
 
-            bool result = await _context.Categories.AnyAsync(c => c.Name == category.Name && c.Id != id);
+            bool result = await _context.Categories.AnyAsync(c => c.Name == categoryVM.Name && c.Id != id);
 
             if (result)
             {
@@ -81,7 +85,7 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
             }
 
-            existed.Name = category.Name;
+            existed.Name = categoryVM.Name;
 
             await _context.SaveChangesAsync();
 
@@ -101,16 +105,7 @@ namespace Pronia.Areas.Admin.Controllers
 
 
             category.IsDeleted = true;
-            //if (category.IsDeleted)
-            //{
-            //    category.IsDeleted = false;
-            //}
-            //else
-            //{
-            //    category.IsDeleted = true;
-            //}
-
-
+            
             await _context.SaveChangesAsync();
             
 

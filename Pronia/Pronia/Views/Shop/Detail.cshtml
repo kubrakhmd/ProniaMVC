@@ -31,10 +31,10 @@
                                 
                                 {
                                     <div class="swiper-slide">
-                                        <a href="~/assets/images/website-images/@proImage.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==false).Image"
+                                        <a href="~/assets/images/website-images/@proImage.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==false)?.Image"
                                            class="single-img gallery-popup">
                                             <img class="img-full"
-                                                 src="~/assets/images/website-images/@proImage.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==true).Image"
+                                                 src="~/assets/images/website-images/@proImage.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==true)?.Image"
                                                  alt="Product Image" />
                                         </a>
                                     </div>
@@ -193,6 +193,18 @@
                                 @foreach (ProductTag pTag in Model.Product.ProductTags)
                                 {
                                     <a href="#">@pTag.Tag.Name</a>
+                                }
+                            </ul>
+                            <ul>
+                                @foreach (ProductColor pColor in Model.Product.ProductColors)
+                                {
+                                    <a href="#">@pColor.Color.Name</a>
+                                }
+                            </ul>
+                            <ul>
+                                @foreach (ProductSize pSize in Model.Product.ProductSizes)
+                                {
+                                    <a href="#">@pSize.Size.Name</a>
                                 }
                             </ul>
                             </div>

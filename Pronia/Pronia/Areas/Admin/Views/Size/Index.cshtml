@@ -1,6 +1,5 @@
-﻿@using Pronia.Areas.ViewModel
-
-@model List<GetCategoryVM>
+﻿@using Pronia.Areas.ViewModels.Size
+@model List<ListSizeVM>
 @{
     int count = 0;
 }
@@ -8,10 +7,10 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Category Table</h4>
-               
+                <h4 class="card-title">Size Table</h4>
+
                 <div class="table-responsive">
-                    <a class="btn btn-success " asp-action="create">Create Category</a>
+                    <a class="btn btn-success " asp-action="create">Create Size</a>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -30,26 +29,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (GetCategoryVM categoryVM in Model)
+                            @foreach (ListSizeVM sizeVM in Model)
                             {
                                 count++;
 
                                 <tr>
-                                    <td> 
-                                      @count
+                                    <td>
+                                        @count
                                     </td>
                                     <td>
-                                        <p>@categoryVM.Name</p>
+                                        <p>@sizeVM.Name</p>
                                     </td>
                                     <td>
-                                      <p>@categoryVM.ProductCount</p>
-                                    </td>
-                                    <td>
-                                        <a asp-action="Update" asp-route-id="@categoryVM.Id" class="btn btn-warning btn-info"><i class="mdi mdi-pencil"></i></a>
-                                        <a asp-action="Delete" asp-route-id="@categoryVM.Id" class="btn btn-danger btn-info"><i class="mdi mdi-delete"></i></a>
+                                        <a asp-action="Update" asp-route-id="@sizeVM.Id" class="btn btn-warning btn-info"><i class="mdi mdi-pencil"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@sizeVM.Id" class="btn btn-danger btn-info"><i class="mdi mdi-delete"></i></a>
                                         <a class="btn btn-primary"><i class="mdi mdi-email-open"></i></a>
                                     </td>
-                                   
+
                                 </tr>
 
                             }

@@ -5,7 +5,11 @@ namespace Pronia.Areas.ViewModels
 {
     public class UpdateProductVM
     {
+       
         public List<IFormFile>? Photos { get; set; }
+        public IFormFile? MainPhoto { get; set; }
+        public List<IFormFile>? AdditionalPhotos { get; set; }
+        public IFormFile? HoverPhoto { get; set; }
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -22,5 +26,6 @@ namespace Pronia.Areas.ViewModels
         public List<Tag>? Tags { get; set; }
         public List<Color>?Colors { get; set; }
         public List<Size>? Sizes { get; set; }
+        public List <ProductImage> ProductImages { get; set; }
     }
 }

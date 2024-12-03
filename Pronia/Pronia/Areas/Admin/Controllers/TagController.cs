@@ -7,27 +7,27 @@ using Pronia.Models;
 namespace Pronia.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ColorController : Controller
+    public class TagController : Controller
     {
         private readonly ProniaDBContext _context;
 
-        public ColorController(ProniaDBContext context)
+        public TagController(ProniaDBContext context)
         {
-            _context = context;
+            _context=context;   
         }
-        public async Task<IActionResult> Index()
+        public async Task <IActionResult>Index()
         {
-            List<Color> colors = await _context.Colors.Where(c => !c.IsDeleted).ToListAsync();
+            List<Tag> tags = await _context.Tags.Where(t => !t.IsDeleted).ToListAsync();
 
-            return View(colors);
-
+            return View(tags);
+            
         }
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateColorVM colorVM)
+        public async Task<IActionResult> CreateAsync(CreateTagVM tagVM)
         {
             if (!ModelState.IsValid)
             {
@@ -35,7 +35,7 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
             }
 
-            bool result = await _context.Colors.AnyAsync(t => t.Name.Trim() == colorVM.Name.Trim());
+            bool result = await _context.Tags.AnyAsync(t => t.Name.Trim() == tagVM.Name.Trim());
 
             if (result)
             {
@@ -43,12 +43,12 @@ namespace Pronia.Areas.Admin.Controllers
                 return View();
 
             }
-           Color color = new()
+            Tag tag = new()
             {
-                Name = colorVM.Name,
+                Name = tagVM.Name,
             };
-            color.CreatedAt = DateTime.Now;
-            await _context.Colors.AddAsync(color);
+            tag.CreatedAt = DateTime.Now;
+            await _context.Tags.AddAsync(tag);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -56,42 +56,42 @@ namespace Pronia.Areas.Admin.Controllers
 
 
         }
-
+       
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null || id < 1) return BadRequest();
 
-           Color color = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
+            Tag tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (color is null) return NotFound();
+            if (tag is null) return NotFound();
 
-            return View(color);
+            return View(tag);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(int? id, UpdateColorVM colorVM)
+        public async Task<IActionResult> Update(int? id, UpdateTagVM tagVM)
         {
             if (id == null || id < 1) return BadRequest();
 
-            Color existed = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
+            Tag existed = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
 
             if (existed is null) return NotFound();
 
-            bool result = await _context.Colors.AnyAsync(c => c.Name == colorVM.Name && c.Id != id);
+            bool result = await _context.Tags.AnyAsync(t => t.Name == tagVM.Name && t.Id != id);
 
             if (result)
             {
-                ModelState.AddModelError(nameof(Color.Name), "Color already exists");
+                ModelState.AddModelError(nameof(Tag.Name), "Tag already exists");
                 return View();
             }
 
-            existed.Name = colorVM.Name;
+            existed.Name = tagVM.Name;
 
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
 
-
+            
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -99,12 +99,12 @@ namespace Pronia.Areas.Admin.Controllers
 
             if (id == null || id < 1) return BadRequest();
 
-           Color color = await _context.Colors.FirstOrDefaultAsync(c => c.Id == id);
+         Tag tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (color is null) return NotFound();
+            if (tag is null) return NotFound();
 
 
-            color.IsDeleted = true;
+            tag.IsDeleted = true;
 
             await _context.SaveChangesAsync();
 

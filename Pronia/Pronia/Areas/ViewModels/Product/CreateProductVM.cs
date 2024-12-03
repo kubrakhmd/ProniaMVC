@@ -4,7 +4,7 @@ using Pronia.Models;
 namespace Pronia.Areas.ViewModels
 {
     public class CreateProductVM
-    {
+    {    
         public string Name { get; set; }
         [Required]
         public decimal? Price { get; set; }
@@ -23,6 +23,7 @@ namespace Pronia.Areas.ViewModels
         public List<Size> Sizes { get; set; }
         public IFormFile MainPhoto { get; set; }
         public IFormFile HoverPhoto { get; set; }
+        public IFormFile ProductImage { get; set; }
 
         public List<IFormFile>? AdditionalPhotos { get; set; }
 

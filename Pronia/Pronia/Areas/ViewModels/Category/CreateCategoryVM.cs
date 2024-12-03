@@ -6,5 +6,6 @@ namespace Pronia.Areas.ViewModels
     {
         public string Name { get; set; }
         public List<Product>? Products { get; set; }
+   
     }
 }
