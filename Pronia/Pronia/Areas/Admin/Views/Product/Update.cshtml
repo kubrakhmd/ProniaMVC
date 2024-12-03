@@ -1,8 +1,8 @@
 ﻿@using Pronia.Areas.ViewModels
 @model UpdateProductVM
 @{
-    ProductImage main = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == true);
-    ProductImage hover = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == false);
+    var main = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == true);
+     var hover = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == false);
   }
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
@@ -31,7 +31,7 @@
                         { <div class="position-relative">
                             <img style="width:150px;height:150px;" src="~/assets/images/website-images/@addImage.Image" />
                             <button class="btn btn-danger position-absolute"> X </button>
-                            <input asp-for="AdditionalPhotos"value="@addImage.Id" type="hidden" class="form-control" />
+                            <input asp-for="ImageIds"value="@addImage.Id" type="hidden" class="form-control" />
                             </div>
                         }
                         <label asp-for="AdditionalPhotos ">Additional Photos</label>

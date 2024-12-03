@@ -176,6 +176,7 @@ namespace Pronia.Areas.Admin.Controllers
                 {
                     product.ProductSizes = productVM.SizeIds.Select(sId => new ProductSize { SizeId = sId }).ToList();
                 }
+
             
                 await _context.Products.AddAsync(product);
                 await _context.SaveChangesAsync();
@@ -347,10 +348,6 @@ namespace Pronia.Areas.Admin.Controllers
             {
                 productVM.ImageIds = new List<int>();
             }
-
-            var deletedImages = existed.ProductImages.Where(pi => !productVM.ImageIds.Exists(imgId => imgId == pi.Id && pi.IsPrimary == null)).ToList();
-            deletedImages.ForEach(di => di.Image.DeleteFile(_env.WebRootPath, "assets", "images", "website-images"));
-            _context.ProductImages.RemoveRange(deletedImages);
             if (productVM.AdditionalPhotos is not null)
             {
                 string text = string.Empty;
@@ -367,12 +364,12 @@ namespace Pronia.Areas.Admin.Controllers
                         text += $"<p class=\text-danger\">{file.FileName} Size was not correct</p>";
                         continue;
                     }
-                    product.ProductImages.Add(new ProductImage
+                    existed.ProductImages.Add(new ProductImage
                     {
                         Image = await file.CreateFileAsync(_env.WebRootPath, "assets", "images", "website-images"),
                         CreatedAt = DateTime.Now,
                         IsDeleted = false,
-                        IsPrimary = null
+                        IsPrimary = null,
 
 
                     });
@@ -380,6 +377,11 @@ namespace Pronia.Areas.Admin.Controllers
 
                 TempData["FileWarning"] = text;
             }
+            var deletedImages = existed.ProductImages.Where(pi => !productVM.ImageIds.Exists(imgId => imgId == pi.Id && pi.IsPrimary == null)).ToList();
+            deletedImages.ForEach(di => di.Image.DeleteFile(_env.WebRootPath, "assets", "images", "website-images"));
+            _context.ProductImages.RemoveRange(deletedImages);
+
+           
 
             existed.SKU = productVM.SKU;
                 existed.Price = productVM.Price.Value;
