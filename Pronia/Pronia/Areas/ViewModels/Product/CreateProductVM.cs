@@ -11,7 +11,6 @@ namespace Pronia.Areas.ViewModels
         public string Description { get; set; }
         public string SKU { get; set; }
 
-
         [Required]
         public int? CategoryId { get; set; }
         public List<int>? TagIds { get; set; }
@@ -24,7 +23,6 @@ namespace Pronia.Areas.ViewModels
         public IFormFile MainPhoto { get; set; }
         public IFormFile HoverPhoto { get; set; }
         public IFormFile ProductImage { get; set; }
-
         public List<IFormFile>? AdditionalPhotos { get; set; }
 
     }

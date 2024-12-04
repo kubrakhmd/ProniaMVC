@@ -44,7 +44,7 @@ namespace ProniaMVC.Areas.Admin.Controllers
                 ModelState.AddModelError("Photo", "File type is not correct");
                 return View();
             }
-            if (!slideVM.Photo.ValidateSize(Pronia.Utilities.Enums.FileSize.MB, 2))
+            if (!slideVM.Photo.ValidateSize(FileSize.MB, 2))
             {
                 ModelState.AddModelError("Photo", "File size must be less than 2 MB");
                 return View();
@@ -78,7 +78,6 @@ namespace ProniaMVC.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-
         public async Task<IActionResult> Update(int? id)
         {
             if (id is null || id <= 0) return BadRequest();

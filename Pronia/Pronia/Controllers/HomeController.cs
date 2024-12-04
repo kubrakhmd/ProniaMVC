@@ -17,9 +17,6 @@ namespace Pronia.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
-
-
             HomeVM homeVM = new HomeVM
             {
                 Slides = await _context.Slides.OrderBy(s => s.Order).Take(2).ToListAsync(),
@@ -28,8 +25,6 @@ namespace Pronia.Controllers
             .Include(p => p.ProductImages.Where(pi => pi.IsPrimary != null))
             .ToListAsync()
             };
-
-
             return View(homeVM);
         }
     }
