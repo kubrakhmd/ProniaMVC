@@ -361,8 +361,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -373,8 +377,7 @@
               "RelativeToolTip": "Pronia\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-21T19:27:52.915Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-21T19:27:52.915Z"
             },
             {
               "$type": "Document",
@@ -398,8 +401,7 @@
               "RelativeToolTip": "Pronia\\Areas\\Admin\\Views\\Product\\Index.cshtml",
               "ViewState": "AgIAAAoAAAAAAAAAAAAvwBAAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-28T06:16:56.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-28T06:16:56.489Z"
             },
             {
               "$type": "Document",
@@ -409,7 +411,7 @@
               "RelativeDocumentMoniker": "Pronia\\Areas\\Admin\\Views\\Color\\Update.cshtml",
               "ToolTip": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\Areas\\Admin\\Views\\Color\\Update.cshtml",
               "RelativeToolTip": "Pronia\\Areas\\Admin\\Views\\Color\\Update.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAADgvwsAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-02T15:02:48.801Z",
               "EditorCaption": ""
@@ -496,8 +498,7 @@
               "RelativeToolTip": "Pronia\\Areas\\Admin\\Views\\Size\\Update.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-02T20:04:42.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T20:04:42.993Z"
             },
             {
               "$type": "Document",
@@ -1422,10 +1423,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
               "WhenOpened": "2024-11-21T05:34:05.05Z",
               "EditorCaption": " - Bitmap [270x300, 24 bit, JPG]"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         }

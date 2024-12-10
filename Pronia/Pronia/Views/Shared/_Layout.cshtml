@@ -141,7 +141,7 @@
                                                         <a class="dropdown-item" asp-action="register" asp-controller="account">Register</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" asp-action="login" asp-controller="account">Login</a>
+                                                        <a class="dropdown-item" asp-action="login" asp-controller="account" asp-route-returnurl="@Context.Request.Path.Value">Login</a>
                                                     </li>
                                                 }
 
@@ -364,7 +364,7 @@
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <span class="title">Product Style</span 
+                                                        <span class="title">Product Style</span>
                                                         <ul>
                                                             <li>
                                                                 <a href="single-product-variable.html">Single Product Variable</a>

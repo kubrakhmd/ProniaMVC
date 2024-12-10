@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Primitives;
@@ -12,6 +13,7 @@ using Pronia.Utilities.Extensions;
 namespace Pronia.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin,Moderator")]
     public class ProductController : Controller
     {
         private readonly ProniaDBContext _context;
@@ -185,7 +187,7 @@ namespace Pronia.Areas.Admin.Controllers
 
 
             }
-
+            //[Authorize(Roles ="Admin")]
             public async Task<IActionResult> Update(int? id)
             {
                 if (id is null || id < 1) return BadRequest();
