@@ -33,6 +33,10 @@ namespace Pronia
             app.UseStaticFiles();
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
             app.MapControllerRoute(
            "admin",
            "{area:exists}/{controller=home}/{action=index}/{id?}"

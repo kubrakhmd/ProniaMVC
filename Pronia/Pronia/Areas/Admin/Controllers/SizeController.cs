@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Pronia.Areas.ViewModel;
 using Pronia.Areas.ViewModels;
 using Pronia.DAL;
 using Pronia.Models;
@@ -19,9 +20,13 @@ namespace Pronia.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Size> sizes = await _context.Sizes.Where(s => !s.IsDeleted).ToListAsync();
-
-            return View(sizes);
+            var sizeVMs = await _context.Sizes.Where(c => !c.IsDeleted).Include(s=> s.ProductSizes).Select(s => new ListSizeVM
+            {
+                Id = s.Id,
+                Name = s.Name,
+               
+            }).ToListAsync();
+            return View(sizeVMs);
 
         }
         public IActionResult Create()

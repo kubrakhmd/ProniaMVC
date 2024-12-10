@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Pronia.Areas.ViewModel;
 using Pronia.Areas.ViewModels;
 using Pronia.DAL;
 using Pronia.Models;
@@ -17,9 +18,13 @@ namespace Pronia.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Color> colors = await _context.Colors.Where(c => !c.IsDeleted).ToListAsync();
-
-            return View(colors);
+            var colorVMs = await _context.Colors.Where(c => !c.IsDeleted).Include(c => c.ProductColors).Select(c => new ListColorVM
+            {
+                Id = c.Id,
+                Name = c.Name,
+               
+            }).ToListAsync();
+            return View(colorVMs);
 
         }
         public IActionResult Create()

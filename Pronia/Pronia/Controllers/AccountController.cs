@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Pronia.Models;
-using Pronia.ViewModels.Account;
+using Pronia.ViewModels;
 
 namespace Pronia.Controllers
 {
