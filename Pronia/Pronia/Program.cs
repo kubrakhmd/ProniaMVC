@@ -3,6 +3,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Pronia.DAL;
 using Pronia.Models;
+using Pronia.Services.Implementations;
+using Pronia.Services.InterFaces;
 
 namespace Pronia
 {
@@ -11,7 +13,8 @@ namespace Pronia
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ProniaDBContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
             builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
@@ -26,8 +29,7 @@ namespace Pronia
                 opt.Lockout.MaxFailedAccessAttempts = 3;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
             }).AddEntityFrameworkStores<ProniaDBContext>().AddDefaultTokenProviders();
-
-
+            builder.Services.AddScoped<ILayoutService, LayoutService>();
 
             var app = builder.Build();
             app.UseStaticFiles();
