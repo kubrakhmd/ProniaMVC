@@ -46,9 +46,9 @@ namespace Pronia.Utilities.Extensions
 
         public static async Task<string> CreateFileAsync(this IFormFile file, params string[] roots)
         {
-            string fileName = String.Concat(Guid.NewGuid().ToString(), file.FileName.Split('.').Length - 1);
-
+            string fileName = string.Concat(Guid.NewGuid().ToString(), file.FileName.Substring(file.FileName.LastIndexOf('.')));
             string path = CombinePaths(roots);
+
             path = Path.Combine(path, fileName);
 
             using (FileStream fileStream = new FileStream(path, FileMode.Create))

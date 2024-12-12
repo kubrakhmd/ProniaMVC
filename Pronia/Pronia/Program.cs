@@ -13,8 +13,6 @@ namespace Pronia
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
-            builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ProniaDBContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
             builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
@@ -30,6 +28,8 @@ namespace Pronia
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
             }).AddEntityFrameworkStores<ProniaDBContext>().AddDefaultTokenProviders();
             builder.Services.AddScoped<ILayoutService, LayoutService>();
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
             app.UseStaticFiles();

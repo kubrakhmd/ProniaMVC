@@ -30,7 +30,9 @@ namespace Pronia.Controllers
             foreach(var item in cookiesVM)
             {
 
-                Product product=await _context.Products.Include(p=>p.ProductImages.Where(p=>p.IsPrimary==true)).FirstOrDefaultAsync(p=>p.Id==item.Id);
+                Product product=await _context.Products
+                    .Include(p=>p.ProductImages.Where(p=>p.IsPrimary==true))
+                    .FirstOrDefaultAsync(p=>p.Id==item.Id);
 
                 if(product != null)
                 {

@@ -1,8 +1,9 @@
 ﻿@model List<BasketItemVM>
 @{
-
     decimal total = 0;
 }
+
+<main class="main-content">
     <div class="breadcrumb-area breadcrumb-height"
          data-bg-image="assets/images/breadcrumb/bg/1-1-1919x388.jpg">
         <div class="container h-100">
@@ -39,53 +40,52 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach (BasketItemVM itemVM in Model)
-                                {
-                                    total+=@itemVM.SubTotal;
-                                    <tr>
-                                        <td class="product_remove">
-                                            <a href="#">
-                                                <i class="pe-7s-close"
-                                                   data-tippy="Remove"
-                                                   data-tippy-inertia="true"
-                                                   data-tippy-animation="shift-away"
-                                                   data-tippy-delay="50"
-                                                   data-tippy-arrow="true"
-                                                   data-tippy-theme="sharpborder"></i>
-                                            </a>
-                                        </td>
-                                        <td class="product-thumbnail">
-                                            <a href="#">
-                                                <img src="~/assets/images/website-images/product/@itemVM.Image"
-                                                     alt="Cart Thumbnail" />
-                                            </a>
-                                        </td>
-                                        <td class="product-name">
-                                            <a asp-action="detail" asp-controller="shop" asp-route-id="@itemVM.Id">@itemVM.Name</a>
-                                        </td>
-                                        <td class="product-price">
-                                            <span class="amount">$@itemVM.Price</span>
-                                        </td>
-                                        <td class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box"
-                                                       value="@itemVM.Count"
-                                                       type="text" />
-                                                <div class="dec qtybutton">
-                                                    <i class="fa fa-minus"></i>
+                                    @foreach (BasketItemVM itemVM in Model)
+                                    {
+                                        total += itemVM.SubTotal;
+                                        <tr>
+                                            <td class="product_remove">
+                                                <a href="#">
+                                                    <i class="pe-7s-close"
+                                                       data-tippy="Remove"
+                                                       data-tippy-inertia="true"
+                                                       data-tippy-animation="shift-away"
+                                                       data-tippy-delay="50"
+                                                       data-tippy-arrow="true"
+                                                       data-tippy-theme="sharpborder"></i>
+                                                </a>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <a href="#">
+                                                    <img style="width:100px;height:120px;" src="~/assets/images/website-images/@itemVM.Image"
+                                                         alt="Cart Thumbnail" />
+                                                </a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a asp-action="detail" asp-controller="shop" asp-route-id="@itemVM.Id">@itemVM.Name</a>
+                                            </td>
+                                            <td class="product-price">
+                                                <span class="amount">$@itemVM.Price</span>
+                                            </td>
+                                            <td class="quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box"
+                                                           value="@itemVM.Count"
+                                                           type="text" />
+                                                    <div class="dec qtybutton">
+                                                        <i class="fa fa-minus"></i>
+                                                    </div>
+                                                    <div class="inc qtybutton">
+                                                        <i class="fa fa-plus"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="inc qtybutton">
-                                                    <i class="fa fa-plus"></i>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="amount">$@itemVM.SubTotal</span>
-                                        </td>
-                                    </tr>
-
-                                }
-
+                                            </td>
+                                            <td class="product-subtotal">
+                                                <span class="amount">$@itemVM.SubTotal</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                   
                                 </tbody>
                             </table>
                         </div>
@@ -118,7 +118,7 @@
                                 <div class="cart-page-total">
                                     <h2>Cart totals</h2>
                                     <ul>
-                                        
+                                      
                                         <li>Total <span>$@total</span></li>
                                     </ul>
                                     <a href="#">Proceed to checkout</a>

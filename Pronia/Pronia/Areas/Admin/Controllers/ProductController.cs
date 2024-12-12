@@ -13,7 +13,7 @@ using Pronia.Utilities.Extensions;
 namespace Pronia.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin,Moderator")]
+   // [Authorize(Roles ="Admin,Moderator")]
     public class ProductController : Controller
     {
         private readonly ProniaDBContext _context;
