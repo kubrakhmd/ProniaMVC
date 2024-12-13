@@ -75,7 +75,7 @@ namespace Pronia.Areas.Admin.Controllers
             return View(category);
 
         }
-        // Salam      Salam
+
         [HttpPost]
         public async Task<IActionResult> Update(int? id, Category category)
         {
