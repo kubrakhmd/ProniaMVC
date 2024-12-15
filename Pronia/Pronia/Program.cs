@@ -5,6 +5,7 @@ using Pronia.DAL;
 using Pronia.Models;
 using Pronia.Services.Implementations;
 using Pronia.Services.InterFaces;
+using Pronia.Services.Implementations.ProniaMVC.Services.Implementations;
 
 namespace Pronia
 {
@@ -28,6 +29,7 @@ namespace Pronia
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
             }).AddEntityFrameworkStores<ProniaDBContext>().AddDefaultTokenProviders();
             builder.Services.AddScoped<ILayoutService, LayoutService>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddHttpContextAccessor();
 

@@ -12,8 +12,8 @@ using Pronia.DAL;
 namespace Pronia.Migrations
 {
     [DbContext(typeof(ProniaDBContext))]
-    [Migration("20241213064716_CreateOrderandOrderItemsTables")]
-    partial class CreateOrderandOrderItemsTables
+    [Migration("20241215201734_CreateOrdersAndOrderItemsTable")]
+    partial class CreateOrdersAndOrderItemsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -312,6 +312,10 @@ namespace Pronia.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AppUserId")
                         .IsRequired()

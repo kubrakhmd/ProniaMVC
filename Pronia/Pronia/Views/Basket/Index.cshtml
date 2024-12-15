@@ -45,7 +45,7 @@
                                         total += itemVM.SubTotal;
                                         <tr>
                                             <td class="product_remove">
-                                                <a href="#">
+                                                <a asp-controller="basket" asp-action="remove" asp-route-id="@itemVM.Id">
                                                     <i class="pe-7s-close"
                                                        data-tippy="Remove"
                                                        data-tippy-inertia="true"
@@ -55,6 +55,7 @@
                                                        data-tippy-theme="sharpborder"></i>
                                                 </a>
                                             </td>
+                                               
                                             <td class="product-thumbnail">
                                                 <a href="#">
                                                     <img style="width:100px;height:120px;" src="~/assets/images/website-images/@itemVM.Image"
@@ -69,15 +70,30 @@
                                             </td>
                                             <td class="quantity">
                                                 <div class="cart-plus-minus">
+                                                 
+                                                    <form asp-action="ChangeItemQuantity" asp-controller="Basket" method="post">
+                                                        <input type="hidden" name="id" value="@itemVM.Id" />
+                                                        <input type="hidden" name="change" value="-1" />
+                                                        <button type="submit" class="dec qtybutton">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </form>
+
+                                               
                                                     <input class="cart-plus-minus-box"
                                                            value="@itemVM.Count"
-                                                           type="text" />
-                                                    <div class="dec qtybutton">
-                                                        <i class="fa fa-minus"></i>
-                                                    </div>
-                                                    <div class="inc qtybutton">
-                                                        <i class="fa fa-plus"></i>
-                                                    </div>
+                                                           type="text"
+                                                           readonly />
+
+                                                  
+                                                    <form asp-action="ChangeItemQuantity" asp-controller="Basket" method="post">
+                                                        <input type="hidden" name="id" value="@itemVM.Id" />
+                                                        <input type="hidden" name="change" value="1" />
+                                                        <button type="submit" class="inc qtybutton">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </td>
                                             <td class="product-subtotal">
