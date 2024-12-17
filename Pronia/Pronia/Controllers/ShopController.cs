@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Pronia.DAL;
 using Pronia.Models;
+using Pronia.Utilities.Exceptions;
 using Pronia.ViewModels;
 namespace Pronia.Controllers
 {
@@ -31,7 +32,7 @@ namespace Pronia.Controllers
                 .ThenInclude(ps=>ps.Size)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product is null) return NotFound();
+            if (product is null) throw new NotFoundException($" Not Found!!");
             DetailVM detailVM = new DetailVM
             {
                 Product = product,

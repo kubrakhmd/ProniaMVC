@@ -36,6 +36,6 @@ namespace Pronia.Areas.Admin.Controllers
                        }).ToListAsync();
                 return View(orderVM);
             }
-
-        }
+           
+    }
     }

@@ -6,6 +6,7 @@ using Pronia.Models;
 using Pronia.Services.Implementations;
 using Pronia.Services.InterFaces;
 using Pronia.Services.Implementations.ProniaMVC.Services.Implementations;
+using Pronia.MiddleWares;
 
 namespace Pronia
 {
@@ -39,6 +40,7 @@ namespace Pronia
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<GlobalExceptionHandler>();
 
 
             app.MapControllerRoute(

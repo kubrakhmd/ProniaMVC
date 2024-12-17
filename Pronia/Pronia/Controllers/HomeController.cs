@@ -35,5 +35,9 @@ namespace Pronia.Controllers
             return View(homeVM);
 
         }
+         public IActionResult Error(string errormessage)
+        {
+            return View(model: errormessage);
+        }
     }
 }

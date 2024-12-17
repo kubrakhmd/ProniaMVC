@@ -7,6 +7,7 @@ using Pronia.DAL;
 using Pronia.Models;
 using Pronia.Services.Implementations.ProniaMVC.Services.Implementations;
 using Pronia.Services.InterFaces;
+using Pronia.Utilities.Exceptions;
 using Pronia.ViewModels;
 
 namespace Pronia.Controllers
@@ -34,7 +35,7 @@ namespace Pronia.Controllers
         }
         public async Task<IActionResult> AddBasket(int? id)
         {
-            if (id == null || id < 1) return BadRequest();
+            if (id == null || id < 1) throw new BadRequestException($"Wrong Request!!");
 
             bool result = await _context.Products.AnyAsync(p => p.Id == id);
             if (!result) return NotFound();
@@ -135,7 +136,7 @@ namespace Pronia.Controllers
                     .Include(u => u.BasketItems)
                     .FirstOrDefaultAsync(u => u.Id == userId);
 
-                if (user == null) return NotFound();
+                if (user == null) throw new NotFoundException($"404 Not Found!!");
 
                 var item = user.BasketItems.FirstOrDefault(b => b.ProductId == id);
 
@@ -177,7 +178,7 @@ namespace Pronia.Controllers
             if (changeInt != 1 && changeInt != -1) return BadRequest(); 
 
             bool result = await _context.Products.AnyAsync(p => p.Id == id);
-            if (!result) return NotFound();
+            if (!result) throw new NotFoundException($"404 Not Found!!");
 
             if (User.Identity.IsAuthenticated)
             {
@@ -187,13 +188,13 @@ namespace Pronia.Controllers
                     .Include(u => u.BasketItems)
                     .FirstOrDefaultAsync(u => u.Id == userId);
 
-                if (user == null) return NotFound(); 
+                if (user == null) throw new NotFoundException($"404 Not Found!!");
 
-          
+
                 var item = user.BasketItems.FirstOrDefault(bi => bi.ProductId == id);
-                if (item == null) return NotFound(); 
+                if (item == null) throw new NotFoundException($"404 Not Found!!");
 
-             
+
                 item.Count += changeInt;
                 if (item.Count <= 0)
                 {
@@ -210,9 +211,9 @@ namespace Pronia.Controllers
                 {
                     var basket = JsonConvert.DeserializeObject<List<BasketCookieItemVM>>(cookies);
                     var item = basket.FirstOrDefault(b => b.Id == id);
-                    if (item == null) return NotFound(); 
+                    if (item == null) throw new NotFoundException($"404 Not Found!!");
 
-                    
+
                     item.Count += changeInt;
                     if (item.Count <= 0)
                     {

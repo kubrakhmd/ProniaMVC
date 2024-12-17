@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/uEQJ1txuTcJHHl3/tyvoj8be3YxAmpw6jpdHpuyGB4=",
+  "Hash": "hur6m9vjrZSCHJgM35Ud91rqpRfGhTUnBtK8/fKdXgs=",
   "Source": "Pronia",
   "BasePath": "_content/Pronia",
   "Mode": "Default",
@@ -4596,6 +4596,25 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\3.png"
     },
     {
+      "Identity": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\assets\\images\\website-images\\3b5af058-55fd-4427-82a3-ab37325f9c8c.jpg",
+      "SourceId": "Pronia",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\",
+      "BasePath": "_content/Pronia",
+      "RelativePath": "assets/images/website-images/3b5af058-55fd-4427-82a3-ab37325f9c8c.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\3b5af058-55fd-4427-82a3-ab37325f9c8c.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\assets\\images\\website-images\\4a85a7c2-a856-447c-996a-ac736cfb01301",
       "SourceId": "Pronia",
       "SourceType": "Discovered",
@@ -4708,6 +4727,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\dark.png"
+    },
+    {
+      "Identity": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\assets\\images\\website-images\\de669b4f-cde1-4c59-8715-5c68ae093358.jpg",
+      "SourceId": "Pronia",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\",
+      "BasePath": "_content/Pronia",
+      "RelativePath": "assets/images/website-images/de669b4f-cde1-4c59-8715-5c68ae093358.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\website-images\\de669b4f-cde1-4c59-8715-5c68ae093358.jpg"
     },
     {
       "Identity": "C:\\Users\\Kubra\\OneDrive\\Desktop\\Pronia\\Pronia\\Pronia\\wwwroot\\assets\\images\\website-images\\download (1).jpg",

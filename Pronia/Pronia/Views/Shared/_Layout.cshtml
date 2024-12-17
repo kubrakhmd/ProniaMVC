@@ -2,16 +2,13 @@
 
 @inject ILayoutService _layoutService;
 @inject IBasketService _basketService;
-
 @{
 
     Dictionary<string, string> settings = await _layoutService.GetSettingsAsync();
-    List <BasketItemVM> basketItems = await _layoutService.GetBasketAsync();
-
-}
-@{
+    List<BasketItemVM> basketItems = await _basketService.GetBasketAsync();
     decimal total = 0;
 }
+
 
 <!DOCTYPE html>
 <html lang="zxx">

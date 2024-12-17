@@ -4,7 +4,7 @@ namespace Pronia.Services.InterFaces
 {
     public interface IBasketService
     {
-        Task<List<BasketItemVM>> GetBasketAsync();
+        Task<List<BasketItemVM>>GetBasketAsync();
 
     }
 }

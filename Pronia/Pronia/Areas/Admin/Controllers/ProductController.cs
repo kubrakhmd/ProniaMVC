@@ -25,25 +25,42 @@ namespace Pronia.Areas.Admin.Controllers
             _env = env;
         }
        
-            public async Task<IActionResult> Index()
+            public async Task<IActionResult> Index(int page=1)
+
             {
-                List<GetProductAdminVM> productsVMs = await _context.Products
-                    .Include(p => p.Category)
-                    .Include(p => p.ProductImages)
-                    .Select(p => new GetProductAdminVM
-                    {
-                        Name = p.Name,
-                        Price = p.Price,
-                        CategoryName = p.Category.Name,
-                        Image = p.ProductImages.FirstOrDefault((p => p.IsPrimary == true)).Image,
-                        Id = p.Id
-                    }
-                    )
-                    .ToListAsync();
+            if (page < 1) return BadRequest();
+            int count=await _context.Products.CountAsync(); 
+            double total =Math.Ceiling((double)count/5);
+            if (page > total) return BadRequest();
+
+            PaginatedVM<GetProductAdminVM> paginatedVMs = new()
+            { TotalPage = total,
+                CurrentPage = page,
+                ProductAdminVMs = await _context.Products
+                .Skip((page-1)*5)
+                .Take(5)
+                .Include(p => p.Category)
+                .Include(p => p.ProductImages)
+
+
+                .Select(p => new GetProductAdminVM
+                {
+                    Name = p.Name,
+                    Price = p.Price,
+                    CategoryName = p.Category.Name,
+                    Image = p.ProductImages.FirstOrDefault((p => p.IsPrimary == true)).Image,
+                    Id = p.Id
+                }
+                )
+                .ToListAsync()
+            };
+                
+                
+               
 
 
 
-                return View(productsVMs);
+                return View(paginatedVMs);
             }
 
             public async Task<IActionResult> Create()
